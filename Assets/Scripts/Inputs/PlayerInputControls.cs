@@ -3,15 +3,35 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputControls : MonoBehaviour
 {
-	public bool Shoot;
+	[HideInInspector] public Vector2 move;
+	[HideInInspector] public bool shoot;
+	[HideInInspector] public bool sprint;
 
+	public void OnMove(InputValue value)
+	{
+		MoveInput(value.Get<Vector2>());
+	}
+	public void OnSprint(InputValue value)
+	{
+		SprintInput(value.isPressed);
+	}
 	public void OnShoot(InputValue value)
 	{
 		ShootInput(value.isPressed);
 	}
 
+
+	public void MoveInput(Vector2 newMoveInputDirection)
+	{
+		move = newMoveInputDirection;
+	}
+	public void SprintInput(bool newSprintState)
+	{
+		sprint = newSprintState;
+	}
 	public void ShootInput(bool newShootState)
 	{
-		Shoot = newShootState;
+		shoot = newShootState;
 	}
+
 }

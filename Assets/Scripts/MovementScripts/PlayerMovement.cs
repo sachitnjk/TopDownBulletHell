@@ -1,18 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private PlayerInput _input;
+	private PlayerInputControls _playerInputControls;
+	private CharacterController _playerCharacterController;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private InputAction sprintInput;
+
+	private float horizontalInput, verticalInput;
+	private float currentSpeed;
+	private Vector3 playerDirection;
+
+	[SerializeField] private float moveSpeed;
+	[SerializeField] private float sprintSpeed;
+
+	private void Start()
+	{
+		_input = GetComponent<PlayerInput>();
+		_playerInputControls = GetComponent<PlayerInputControls>();
+		_playerCharacterController = GetComponent<CharacterController>();
+
+		sprintInput = _input.actions["Sprint"];
+	}
+
+	private void Update()
+	{
+		PlayerMove();
+		PlayerSprint();
+	}
+
+	private void PlayerMove()
+	{
+		Vector2 moveDirection = _playerInputControls.move;
+		horizontalInput = moveDirection.x;
+		verticalInput = moveDirection.y;
+
+		playerDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+		_playerCharacterController.Move(playerDirection * currentSpeed * Time.deltaTime);
+	}
+
+	private void PlayerSprint()
+	{
+		if(sprintInput.WasPressedThisFrame())
+		{
+			currentSpeed = sprintSpeed;
+		}
+		else if(sprintInput.WasReleasedThisFrame())
+		{
+			currentSpeed = moveSpeed;
+		}
+	}
 }

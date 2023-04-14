@@ -127,7 +127,9 @@ GameObject:
   - component: {fileID: 380157924216620172}
   - component: {fileID: 7429544572572277116}
   - component: {fileID: 4845665670167890729}
+  - component: {fileID: 2759595713372783299}
   - component: {fileID: 5486185584513638454}
+  - component: {fileID: 6482199707259050278}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -213,6 +215,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2759595713372783299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302134715107241572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d8e26e9fbf2274285975a4c5648fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  sprintSpeed: 8
 --- !u!114 &5486185584513638454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +243,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 442957865872369578}
   bulletPrefab: {fileID: 4465227624094289643, guid: 4169142fc689dc0499b9b874164ac49c, type: 3}
+--- !u!114 &6482199707259050278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302134715107241572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842d242dfa8281044b32242336eeb6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {x: 0, y: 0}
+  shoot: 0
+  sprint: 0
 --- !u!1 &8302134715111642163
 GameObject:
   m_ObjectHideFlags: 0
