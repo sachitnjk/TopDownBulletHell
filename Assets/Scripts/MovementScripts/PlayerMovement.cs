@@ -25,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
 		_playerCharacterController = GetComponent<CharacterController>();
 
 		sprintInput = _input.actions["Sprint"];
+
+		currentSpeed = moveSpeed;
 	}
 
 	private void Update()
 	{
-		PlayerMove();
 		PlayerSprint();
+		PlayerMove();
 	}
 
 	private void PlayerMove()
