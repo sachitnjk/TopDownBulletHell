@@ -11,6 +11,8 @@ public class PlayerShoot : MonoBehaviour
 	[SerializeField] private float fireRate;
 	[SerializeField] private float bulletSpeed;
 
+	private bool canShoot;
+
 	private PlayerInput _input;
 	private InputAction shootInput;
 
@@ -18,11 +20,13 @@ public class PlayerShoot : MonoBehaviour
 	{
 		_input = GetComponent<PlayerInput>();
 		shootInput = _input.actions["Shoot"];
+
+		canShoot = true;
 	}
 
 	private void Update()
 	{
-		if(shootInput.IsPressed())
+		if(shootInput.IsPressed() && canShoot)
 		{
 			Shoot();
 		}
@@ -30,8 +34,19 @@ public class PlayerShoot : MonoBehaviour
 
 	private void Shoot()
 	{
+		StartCoroutine(ShootCoroutine());
+	}
+
+	private IEnumerator ShootCoroutine()
+	{
+		canShoot = false;
+
 		GameObject bulletObject = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
 		Rigidbody bulletRb = bulletObject.GetComponent<Rigidbody>();
 		bulletRb.velocity = shootPoint.forward * bulletSpeed;
+
+		yield return new WaitForSeconds(1f/fireRate);
+
+		canShoot = true;
 	}
 }
