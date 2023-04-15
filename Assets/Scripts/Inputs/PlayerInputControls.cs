@@ -6,6 +6,7 @@ public class PlayerInputControls : MonoBehaviour
 	[HideInInspector] public Vector2 move;
 	[HideInInspector] public bool shoot;
 	[HideInInspector] public bool sprint;
+	[HideInInspector] public bool SwitchFireMode;
 
 	public void OnMove(InputValue value)
 	{
@@ -18,6 +19,10 @@ public class PlayerInputControls : MonoBehaviour
 	public void OnShoot(InputValue value)
 	{
 		ShootInput(value.isPressed);
+	}
+	public void OnSwitchFireMode(InputValue value)
+	{
+		SwitchFireModeInput(value.isPressed);
 	}
 
 
@@ -32,6 +37,10 @@ public class PlayerInputControls : MonoBehaviour
 	public void ShootInput(bool newShootState)
 	{
 		shoot = newShootState;
+	}
+	public void SwitchFireModeInput(bool newFireModeState)
+	{
+		SwitchFireMode = newFireModeState;
 	}
 
 }

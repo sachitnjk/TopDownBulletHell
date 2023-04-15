@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchFiremode",
+                    "type": "Button",
+                    "id": "7bc5fd5f-d87d-48e8-b26b-2487f6580b90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79a26804-0d10-4894-9cc4-f89faa3806b1",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchFiremode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -10,25 +10,41 @@ public class PlayerShoot : MonoBehaviour
 
 	[SerializeField] private float fireRate;
 	[SerializeField] private float bulletSpeed;
+	[SerializeField] private FireMode currentFireMode;
 
 	private bool canShoot;
 
 	private PlayerInput _input;
-	private InputAction shootInput;
+	private InputAction _shootInput;
+	private InputAction _SwitchFireMode;
+
+
+	private enum FireMode
+	{
+		SingleShot,
+		BurstFire,
+		AutoFire
+	}
 
 	private void Start()
 	{
 		_input = GetComponent<PlayerInput>();
-		shootInput = _input.actions["Shoot"];
+		_shootInput = _input.actions["Shoot"];
+		_SwitchFireMode = _input.actions["SwitchFireMode"];
 
 		canShoot = true;
+		currentFireMode = FireMode.SingleShot;
 	}
 
 	private void Update()
 	{
-		if(shootInput.IsPressed() && canShoot)
+		if(_shootInput.IsPressed() && canShoot)
 		{
 			Shoot();
+		}
+		if(_SwitchFireMode.triggered)
+		{
+			ChangeFireMode();
 		}
 	}
 
@@ -48,5 +64,24 @@ public class PlayerShoot : MonoBehaviour
 		yield return new WaitForSeconds(1f/fireRate);
 
 		canShoot = true;
+	}
+
+	private void ChangeFireMode()
+	{
+		switch (currentFireMode)
+		{
+			case FireMode.SingleShot:
+				currentFireMode = FireMode.BurstFire;
+				break;
+			case FireMode.BurstFire:
+				currentFireMode = FireMode.AutoFire;
+				break;
+			case FireMode.AutoFire:
+				currentFireMode = FireMode.SingleShot;
+				break;
+			default:
+				break;
+
+		}
 	}
 }
