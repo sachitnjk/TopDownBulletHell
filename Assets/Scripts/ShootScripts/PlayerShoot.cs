@@ -57,13 +57,36 @@ public class PlayerShoot : MonoBehaviour
 	{
 		canShoot = false;
 
+		switch(currentFireMode)
+		{
+			case FireMode.SingleShot:
+				ShootBullet();
+				yield return new WaitForSeconds(2f);
+				break;
+			case FireMode.BurstFire:
+				for(int i = 0; i < 3; i++)
+				{
+					ShootBullet();
+					yield return new WaitForSecondsRealtime(0.1f);
+				}
+				yield return new WaitForSeconds(0.8f - 0.3f);  //3 seconds minus the total time spent waiting between shots (0.1 * 3 = 0.3)
+				break;
+			case FireMode.AutoFire:
+				ShootBullet();
+				yield return new WaitForSeconds(0.1f);
+				break;
+			default:
+				break;
+		}
+
+		canShoot = true;
+	}
+
+	private void ShootBullet()
+	{
 		GameObject bulletObject = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
 		Rigidbody bulletRb = bulletObject.GetComponent<Rigidbody>();
 		bulletRb.velocity = shootPoint.forward * bulletSpeed;
-
-		yield return new WaitForSeconds(1f/fireRate);
-
-		canShoot = true;
 	}
 
 	private void ChangeFireMode()
