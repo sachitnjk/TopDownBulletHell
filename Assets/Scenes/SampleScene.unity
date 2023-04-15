@@ -139,8 +139,16 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5486185584513638454, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: fireRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486185584513638454, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486185584513638454, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: bulletSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8302134715107241572, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_Name

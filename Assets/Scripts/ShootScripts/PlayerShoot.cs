@@ -8,8 +8,10 @@ public class PlayerShoot : MonoBehaviour
 	[SerializeField] private Transform shootPoint;
 	[SerializeField] private GameObject bulletPrefab;
 
-	private PlayerInput _input;
+	[SerializeField] private float fireRate;
+	[SerializeField] private float bulletSpeed;
 
+	private PlayerInput _input;
 	private InputAction shootInput;
 
 	private void Start()
@@ -19,7 +21,7 @@ public class PlayerShoot : MonoBehaviour
 	}
 
 	private void Update()
-	{ 
+	{
 		if(shootInput.IsPressed())
 		{
 			Shoot();
@@ -28,6 +30,8 @@ public class PlayerShoot : MonoBehaviour
 
 	private void Shoot()
 	{
-		Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+		GameObject bulletObject = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+		Rigidbody bulletRb = bulletObject.GetComponent<Rigidbody>();
+		bulletRb.velocity = shootPoint.forward * bulletSpeed;
 	}
 }
