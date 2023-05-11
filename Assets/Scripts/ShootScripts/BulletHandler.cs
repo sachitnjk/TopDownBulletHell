@@ -6,12 +6,18 @@ public class BulletHandler : MonoBehaviour
 {
 	public float lifetime = 0.5f;
 
-	private void Start()
+	private float spawnTime;
+
+	private void OnEnable()
 	{
-		Invoke("DestroyBulletAfterLifetime", lifetime);
+		spawnTime = Time.time;
 	}
-	private void DestroyBulletAfterLifetime()
+
+	private void Update()
 	{
-		gameObject.SetActive(false);
+		if(Time.time - spawnTime >= lifetime) 
+		{
+			gameObject.SetActive(false);
+		}
 	}
 }
