@@ -9,6 +9,7 @@ public class ObjectPooler : MonoBehaviour
 	public GameObject bulletPrefab;
 	public List<GameObject> pooledObjects;
 	public int countToPool = 20;
+	public bool dynamicPool = false;
 
 	private void Awake()
 	{
@@ -32,6 +33,13 @@ public class ObjectPooler : MonoBehaviour
 			if (!pooledObjects[i].activeInHierarchy)
 			{
 				return pooledObjects[i];
+			}
+			if(dynamicPool)
+			{
+				GameObject instantiatedPrefab = Instantiate(bulletPrefab);
+				instantiatedPrefab.SetActive(false);
+				pooledObjects.Add(instantiatedPrefab);
+				return instantiatedPrefab;
 			}
 		}
 		return null;

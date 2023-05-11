@@ -583,6 +583,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4465227624094289643, guid: 4169142fc689dc0499b9b874164ac49c, type: 3}
   pooledObjects: []
   countToPool: 20
+  dynamicPool: 0
 --- !u!4 &1429821689
 Transform:
   m_ObjectHideFlags: 0

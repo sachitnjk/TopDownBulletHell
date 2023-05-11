@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletHandler : MonoBehaviour
 {
-	public float lifetime = 0.5f;
+	public float lifetime;
 
 	private float spawnTime;
 
