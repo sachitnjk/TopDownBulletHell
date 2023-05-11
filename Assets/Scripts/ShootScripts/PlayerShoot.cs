@@ -14,35 +14,30 @@ public class PlayerShoot : MonoBehaviour
 
 	private bool canShoot;
 
-	private PlayerInput _input;
-	private InputAction _shootInput;
-	private InputAction _SwitchFireMode;
+	private PlayerInputControls _input;
 
 
 	private enum FireMode
 	{
-		SingleShot,
 		BurstFire,
 		AutoFire
 	}
 
 	private void Start()
 	{
-		_input = GetComponent<PlayerInput>();
-		_shootInput = _input.actions["Shoot"];
-		_SwitchFireMode = _input.actions["SwitchFireMode"];
+		_input = GetComponent<PlayerInputControls>();
 
 		canShoot = true;
-		currentFireMode = FireMode.SingleShot;
+		currentFireMode = FireMode.BurstFire;
 	}
 
 	private void Update()
 	{
-		if(_shootInput.IsPressed() && canShoot)
+		if(_input._shoot.IsPressed() && canShoot)
 		{
 			Shoot();
 		}
-		if(_SwitchFireMode.triggered)
+		if(_input._switchFireMode.WasPressedThisFrame())
 		{
 			ChangeFireMode();
 		}
@@ -59,17 +54,13 @@ public class PlayerShoot : MonoBehaviour
 
 		switch(currentFireMode)
 		{
-			case FireMode.SingleShot:
-				ShootBullet();
-				yield return new WaitForSeconds(2f);
-				break;
 			case FireMode.BurstFire:
 				for(int i = 0; i < 3; i++)
 				{
 					ShootBullet();
 					yield return new WaitForSecondsRealtime(0.1f);
 				}
-				yield return new WaitForSeconds(0.8f - 0.3f);  //3 seconds minus the total time spent waiting between shots (0.1 * 3 = 0.3)
+				yield return new WaitForSeconds(0.8f - 0.3f);
 				break;
 			case FireMode.AutoFire:
 				ShootBullet();
@@ -93,18 +84,12 @@ public class PlayerShoot : MonoBehaviour
 	{
 		switch (currentFireMode)
 		{
-			case FireMode.SingleShot:
-				currentFireMode = FireMode.BurstFire;
-				break;
 			case FireMode.BurstFire:
 				currentFireMode = FireMode.AutoFire;
 				break;
 			case FireMode.AutoFire:
-				currentFireMode = FireMode.SingleShot;
+				currentFireMode = FireMode.BurstFire;
 				break;
-			default:
-				break;
-
 		}
 	}
 }
