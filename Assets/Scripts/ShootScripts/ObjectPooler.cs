@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
@@ -11,8 +12,11 @@ public class ObjectPooler : MonoBehaviour
 	public int countToPool = 20;
 	public bool dynamicPool = false;
 
+	[SerializeField] private string currentPrefabTag;
+
 	private void Awake()
 	{
+		currentPrefabTag = bulletPrefab.tag;
 		if(instance == null)
 		{  
 			instance = this;
