@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletHandler : MonoBehaviour
 {
-	public float lifetime = 2f;
+	public float lifetime = 0.5f;
 
 	private void Start()
 	{
@@ -12,6 +12,6 @@ public class BulletHandler : MonoBehaviour
 	}
 	private void DestroyBulletAfterLifetime()
 	{
-		Destroy(gameObject);
+		gameObject.SetActive(false);
 	}
 }

@@ -75,9 +75,17 @@ public class PlayerShoot : MonoBehaviour
 
 	private void ShootBullet()
 	{
-		GameObject bulletObject = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+		//GameObject bulletObject = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+		GameObject bulletObject = ObjectPooler.instance.GetPooledObject();
+		if(bulletObject == null ) 
+		{
+			return;
+		}
+		bulletObject.transform.position = shootPoint.position;
+		bulletObject.transform.rotation = Quaternion.identity;
 		Rigidbody bulletRb = bulletObject.GetComponent<Rigidbody>();
 		bulletRb.velocity = shootPoint.forward * bulletSpeed;
+		bulletObject.SetActive(true);
 	}
 
 	private void ChangeFireMode()
