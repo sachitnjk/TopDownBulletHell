@@ -9,14 +9,15 @@ public class PlayerMovement : MonoBehaviour
 	private PlayerInputControls _playerInputControls;
 	private CharacterController _playerCharacterController;
 
-	private InputAction sprintInput;
+	private InputAction dashInput;
 
 	private float horizontalInput, verticalInput;
 	private float currentSpeed;
 	private Vector3 playerDirection;
+	private Vector3 lastMovementDirection;
 
 	[SerializeField] private float moveSpeed;
-	[SerializeField] private float sprintSpeed;
+	[SerializeField] private float dashSpeed;
 	[SerializeField] private float gravity;
 
 	private void Start()
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 		_playerInputControls = GetComponent<PlayerInputControls>();
 		_playerCharacterController = GetComponent<CharacterController>();
 
-		sprintInput = _input.actions["Sprint"];
+		dashInput = _input.actions["Dash"];
 
 		currentSpeed = moveSpeed;
 	}
@@ -43,21 +44,27 @@ public class PlayerMovement : MonoBehaviour
 		verticalInput = moveDirection.y;
 
 		playerDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+		lastMovementDirection = playerDirection.normalized;
 		_playerCharacterController.Move(playerDirection * currentSpeed * Time.deltaTime);
 
-		// Apply gravity to the character controller
 		_playerCharacterController.SimpleMove(Vector3.down * gravity * Time.deltaTime);
 	}
 
 	private void PlayerSprint()
 	{
-		if(sprintInput.WasPressedThisFrame())
+		if(dashInput.WasPressedThisFrame())
 		{
-			currentSpeed = sprintSpeed;
+			currentSpeed = dashSpeed;
+			Dash();
 		}
-		else if(sprintInput.WasReleasedThisFrame())
+		else if(dashInput.WasReleasedThisFrame())
 		{
 			currentSpeed = moveSpeed;
 		}
+	}
+
+	private void Dash()
+	{
+		_playerCharacterController.Move(lastMovementDirection * currentSpeed);
 	}
 }
