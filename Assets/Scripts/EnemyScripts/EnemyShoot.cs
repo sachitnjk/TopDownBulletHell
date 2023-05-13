@@ -41,7 +41,8 @@ public class EnemyShoot : MonoBehaviour
 			}
 			projectileObject.transform.position = startPoint;
 			projectileObject.transform.rotation = Quaternion.identity;
-			projectileObject.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.y);
+			//projectileObject.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.y);
+			projectileObject.GetComponent<Rigidbody>().velocity = projectileMoveDirection * projectileSpeed * Time.deltaTime;
 
 			projectileObject.SetActive(true);
 			angle += angleStep;
