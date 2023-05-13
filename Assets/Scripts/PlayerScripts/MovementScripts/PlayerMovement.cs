@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,18 @@ public class PlayerMovement : MonoBehaviour
 
 	private float horizontalInput, verticalInput;
 	private float currentSpeed;
+	private float dashStartTime;
+	private float lastDashTime = -Mathf.Infinity;
+	private bool isDashing = false;
 	private Vector3 playerDirection;
 	private Vector3 lastMovementDirection;
 
+	[Header("Player Movement")]
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private float dashSpeed;
+	[SerializeField] private float dashDistance;
+	[SerializeField] private float dashTime;
+	[SerializeField] private float dashCooldown;
 	[SerializeField] private float gravity;
 
 	private void Start()
@@ -45,17 +53,19 @@ public class PlayerMovement : MonoBehaviour
 
 		playerDirection = transform.forward * verticalInput + transform.right * horizontalInput;
 		lastMovementDirection = playerDirection.normalized;
-		_playerCharacterController.Move(playerDirection * currentSpeed * Time.deltaTime);
 
+		_playerCharacterController.Move(playerDirection * currentSpeed * Time.deltaTime);
 		_playerCharacterController.SimpleMove(Vector3.down * gravity * Time.deltaTime);
+
 	}
 
 	private void PlayerSprint()
 	{
-		if(dashInput.WasPressedThisFrame())
+		if(dashInput.WasPressedThisFrame() && Time.time > lastDashTime + dashCooldown)
 		{
 			currentSpeed = dashSpeed;
-			Dash();
+			StartCoroutine(DashCoroutine());
+			lastDashTime = Time.time;
 		}
 		else if(dashInput.WasReleasedThisFrame())
 		{
@@ -63,8 +73,21 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-	private void Dash()
+	private IEnumerator DashCoroutine()
 	{
-		_playerCharacterController.Move(lastMovementDirection * currentSpeed);
+		isDashing = true;
+		Vector3 startPosition = transform.position;
+		Vector3 endPosition = startPosition + lastMovementDirection * dashDistance;
+
+		float elapsedTime = 0f;
+		while (elapsedTime < dashTime)
+		{
+			transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / dashTime);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+
+		transform.position = endPosition;
+		isDashing = false;
 	}
 }

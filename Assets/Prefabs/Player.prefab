@@ -333,6 +333,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   dashSpeed: 20
+  dashDistance: 5
+  dashTime: 0.1
+  dashCooldown: 1
   gravity: 20
 --- !u!114 &5486185584513638454
 MonoBehaviour:
