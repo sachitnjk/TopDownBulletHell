@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private float sprintSpeed;
+	[SerializeField] private float gravity;
 
 	private void Start()
 	{
@@ -43,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
 		playerDirection = transform.forward * verticalInput + transform.right * horizontalInput;
 		_playerCharacterController.Move(playerDirection * currentSpeed * Time.deltaTime);
+
+		// Apply gravity to the character controller
+		_playerCharacterController.SimpleMove(Vector3.down * gravity * Time.deltaTime);
 	}
 
 	private void PlayerSprint()

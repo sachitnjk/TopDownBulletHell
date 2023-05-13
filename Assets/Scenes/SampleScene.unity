@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 440931700}
   - component: {fileID: 440931699}
   - component: {fileID: 440931702}
+  - component: {fileID: 440931703}
   m_Layer: 0
   m_Name: Chonk
   m_TagString: Untagged
@@ -182,14 +183,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440931697}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.8, z: 25}
-  m_LocalScale: {x: 20.444044, y: 20.444044, z: 20.444044}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 2.79, z: 22.7}
+  m_LocalScale: {x: 5.0844336, y: 5.0844336, z: 5.0844336}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 415251911}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!135 &440931699
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -265,6 +266,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719bd8c5195cec749b3eae1deb3c5133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTag: Bullet
+--- !u!114 &440931703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440931697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330b9331dc917594ba2e55a43eb8a14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfProjectiles: 10
+  projectileSpeed: 10
 --- !u!1001 &608965753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -289,6 +305,10 @@ PrefabInstance:
       value: 23.901
       objectReference: {fileID: 0}
     - target: {fileID: 2759595713372783299, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: gravity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759595713372783299, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: moveSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -308,8 +328,16 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5486185584513638454, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8302134715107241572, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302134715107241572, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8302134715107241575, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
@@ -358,6 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 380157924216620172, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+    - {fileID: 2730351955744129026, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -561,6 +590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1429821689}
   - component: {fileID: 1429821688}
+  - component: {fileID: 1429821690}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -584,6 +614,7 @@ MonoBehaviour:
   pooledObjects: []
   countToPool: 20
   dynamicPool: 0
+  currentPrefabTag: 
 --- !u!4 &1429821689
 Transform:
   m_ObjectHideFlags: 0
@@ -599,6 +630,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1429821690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429821687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd31174a94c6c64d9190d23428bf72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  e_ProjectilePrefab: {fileID: 8083583540607516433, guid: cc198fc4a4c8adb468df300475702874, type: 3}
+  e_PooledObjects: []
+  e_CountToPool: 40
+  e_DynamicPool: 0
+  currentPrefabTag: 
 --- !u!1 &1938207171
 GameObject:
   m_ObjectHideFlags: 0

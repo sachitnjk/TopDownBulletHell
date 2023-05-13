@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerShoot : MonoBehaviour
 {
 	[SerializeField] private Transform shootPoint;
-	[SerializeField] private GameObject bulletPrefab;
 
 	[SerializeField] private float fireRate;
 	[SerializeField] private float bulletSpeed;
@@ -75,7 +74,6 @@ public class PlayerShoot : MonoBehaviour
 
 	private void ShootBullet()
 	{
-		//GameObject bulletObject = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
 		GameObject bulletObject = ObjectPooler.instance.GetPooledObject();
 		if(bulletObject == null ) 
 		{

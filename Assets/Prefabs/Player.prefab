@@ -268,9 +268,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {x: 0, y: 0}
-  shoot: 0
   sprint: 0
   SwitchFireMode: 0
+  _input: {fileID: 0}
+  _shoot:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _switchFireMode:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &4845665670167890729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   sprintSpeed: 8
+  gravity: 0
 --- !u!114 &5486185584513638454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 442957865872369578}
-  bulletPrefab: {fileID: 4465227624094289643, guid: 4169142fc689dc0499b9b874164ac49c, type: 3}
   fireRate: 2
   bulletSpeed: 1
   currentFireMode: 0
