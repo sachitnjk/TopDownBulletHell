@@ -842,7 +842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   e_ProjectilePrefab: {fileID: 8083583540607516433, guid: cc198fc4a4c8adb468df300475702874, type: 3}
   e_PooledObjects: []
-  e_CountToPool: 0
+  e_CountToPool: 20
   e_DynamicPool: 0
   currentPrefabTag: 
 --- !u!1 &1905093779

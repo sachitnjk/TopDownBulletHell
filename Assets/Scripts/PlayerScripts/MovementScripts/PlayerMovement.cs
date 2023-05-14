@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 public class PlayerMovement : MonoBehaviour
 {
-	private PlayerInput _input;
 	private PlayerInputControls _playerInputControls;
 	private CharacterController _playerCharacterController;
 
 	private InputAction dashInput;
+	private PlayerInput _input;
 
 	private float horizontalInput, verticalInput;
 	private float currentSpeed;
@@ -22,11 +23,13 @@ public class PlayerMovement : MonoBehaviour
 
 	[Header("Player Movement")]
 	[SerializeField] private float moveSpeed;
+	[SerializeField] private float gravity;
+
+	[Header("Player Dash")]
 	[SerializeField] private float dashSpeed;
 	[SerializeField] private float dashDistance;
 	[SerializeField] private float dashTime;
 	[SerializeField] private float dashCooldown;
-	[SerializeField] private float gravity;
 
 	private void Start()
 	{
@@ -68,6 +71,11 @@ public class PlayerMovement : MonoBehaviour
 			lastDashTime = Time.time;
 		}
 		else if(dashInput.WasReleasedThisFrame())
+		{
+			currentSpeed = moveSpeed;
+		}
+
+		if(dashInput.IsPressed() && !isDashing)
 		{
 			currentSpeed = moveSpeed;
 		}
