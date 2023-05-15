@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputControls : MonoBehaviour
 {
 	[HideInInspector] public Vector2 move;
+	[HideInInspector] public Vector2 look;
 	[HideInInspector] public bool sprint;
 	[HideInInspector] public bool SwitchFireMode;
 
@@ -22,6 +23,10 @@ public class PlayerInputControls : MonoBehaviour
 	{
 		MoveInput(value.Get<Vector2>());
 	}
+	public void OnLook(InputValue value)
+	{
+		LookInput(value.Get<Vector2>());
+	}
 	public void OnSprint(InputValue value)
 	{
 		SprintInput(value.isPressed);
@@ -31,6 +36,10 @@ public class PlayerInputControls : MonoBehaviour
 	public void MoveInput(Vector2 newMoveInputDirection)
 	{
 		move = newMoveInputDirection;
+	}
+	public void LookInput(Vector2 newLookDirection)
+	{
+		look = newLookDirection;
 	}
 	public void SprintInput(bool newSprintState)
 	{

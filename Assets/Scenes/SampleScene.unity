@@ -468,23 +468,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1475246726304640829, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.9
+      value: 35.2
       objectReference: {fileID: 0}
     - target: {fileID: 1475246726304640829, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.2
+      value: -14.2
       objectReference: {fileID: 0}
     - target: {fileID: 1475246726304640829, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9739694
+      value: 0.9191027
       objectReference: {fileID: 0}
     - target: {fileID: 1475246726304640829, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.22667956
+      value: 0.394018
       objectReference: {fileID: 0}
     - target: {fileID: 1475246726304640829, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 26.203
+      value: 46.41
       objectReference: {fileID: 0}
     - target: {fileID: 2759595713372783299, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: gravity

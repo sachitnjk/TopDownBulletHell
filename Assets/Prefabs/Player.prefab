@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1475246726304640829}
   - component: {fileID: 4419220508822962645}
   - component: {fileID: 6426462739754952207}
+  - component: {fileID: 1158460861295333704}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494782921897585053}
-  m_LocalRotation: {x: 0.41411573, y: -0, z: -0, w: 0.91022426}
-  m_LocalPosition: {x: 0, y: 27.2, z: -12.200001}
+  m_LocalRotation: {x: 0.39402205, y: 0, z: 0, w: 0.91910106}
+  m_LocalPosition: {x: 0, y: 35.2, z: -14.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8302134715107241575}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 46.41, y: 0, z: 0}
 --- !u!20 &4419220508822962645
 Camera:
   m_ObjectHideFlags: 0
@@ -84,6 +85,26 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494782921897585053}
   m_Enabled: 1
+--- !u!114 &1158460861295333704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494782921897585053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6178518d282dc1a45969e9172a58c6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 8302134715111642162}
+  positionOffset: {x: 0, y: 19.19, z: -16.33}
+  rotationOffset: {x: 29.175, y: 0, z: 0}
+  sensitivity: 0.5
+  distance: 10
+  minVerticalAngle: 10
+  maxVerticalAngle: 10
+  _input: {fileID: 6482199707259050278}
 --- !u!1 &4248200570405648979
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {x: 0, y: 0}
+  look: {x: 0, y: 0}
   sprint: 0
   SwitchFireMode: 0
   _input: {fileID: 0}
@@ -331,12 +353,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d8e26e9fbf2274285975a4c5648fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerCamera: {fileID: 1158460861295333704}
   moveSpeed: 10
+  gravity: 20
   dashSpeed: 20
   dashDistance: 10
   dashTime: 0.1
   dashCooldown: 1
-  gravity: 20
 --- !u!114 &5486185584513638454
 MonoBehaviour:
   m_ObjectHideFlags: 0

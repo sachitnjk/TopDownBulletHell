@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 	private PlayerInputControls _playerInputControls;
 	private CharacterController _playerCharacterController;
 
+	[SerializeField] private PlayerCamera _playerCamera;
+
 	private InputAction dashInput;
 	private PlayerInput _input;
 
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool isDashing = false;
 	private Vector3 playerDirection;
 	private Vector3 lastMovementDirection;
+	private Transform playerTransform;
 
 	[Header("Player Movement")]
 	[SerializeField] private float moveSpeed;
@@ -36,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
 		_input = GetComponent<PlayerInput>();
 		_playerInputControls = GetComponent<PlayerInputControls>();
 		_playerCharacterController = GetComponent<CharacterController>();
+
+		playerTransform = _playerCamera.GetPlayerTransform();
 
 		dashInput = _input.actions["Dash"];
 
@@ -54,7 +59,12 @@ public class PlayerMovement : MonoBehaviour
 		horizontalInput = moveDirection.x;
 		verticalInput = moveDirection.y;
 
-		playerDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+		Vector3 forward = playerTransform.forward;
+		Vector3 right = playerTransform.right;
+		forward.y = 0f;
+		right.y = 0f;
+
+		playerDirection = forward.normalized * verticalInput + right.normalized * horizontalInput;
 		lastMovementDirection = playerDirection.normalized;
 
 		_playerCharacterController.Move(playerDirection * currentSpeed * Time.deltaTime);
