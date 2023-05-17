@@ -466,6 +466,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1158460861295333704, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: sensitivity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158460861295333704, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: maxHorizontalAngle
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158460861295333704, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: minHorizontalAngle
+      value: -75
+      objectReference: {fileID: 0}
     - target: {fileID: 1475246726304640829, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: m_LocalPosition.y
       value: 35.2

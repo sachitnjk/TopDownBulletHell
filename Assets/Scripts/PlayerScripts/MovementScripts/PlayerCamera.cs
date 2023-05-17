@@ -13,6 +13,8 @@ public class PlayerCamera : MonoBehaviour
 	[SerializeField] private float distance;
 	[SerializeField] private float minVerticalAngle;
 	[SerializeField] private float maxVerticalAngle;
+	[SerializeField] private float minHorizontalAngle;
+	[SerializeField] private float maxHorizontalAngle;
 
 	[SerializeField] private PlayerInputControls _input;
 
@@ -31,6 +33,7 @@ public class PlayerCamera : MonoBehaviour
 		_rotation += mouseDelta * sensitivity;
 
 		_rotation.y = Mathf.Clamp(_rotation.y, minVerticalAngle, maxVerticalAngle);
+		_rotation.x = Mathf.Clamp(_rotation.x, minHorizontalAngle, maxHorizontalAngle);
 
 		Quaternion rotation = Quaternion.Euler(_rotation.y + rotationOffset.x, _rotation.x + rotationOffset.y, 0 + rotationOffset.z);
 		Vector3 position = playerTransform.position - (rotation * Vector3.forward * _currentDistance) + positionOffset;
@@ -38,7 +41,7 @@ public class PlayerCamera : MonoBehaviour
 		transform.rotation = rotation;
 		transform.position = position;
 
-		//Calculation player rotaion adn rotation player
+		//Calculation player rotaion and rotate player
 		Quaternion playerRotation = Quaternion.Euler(0f, _rotation.x, 0f);
 		playerTransform.rotation = playerRotation;
 	}
