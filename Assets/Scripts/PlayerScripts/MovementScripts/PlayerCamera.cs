@@ -7,10 +7,14 @@ using UnityEngine.Windows;
 public class PlayerCamera : MonoBehaviour
 {
 	[SerializeField] private Transform playerTransform;
+
+	[Header("Camera Position and sensitivity")]
 	[SerializeField] private Vector3 positionOffset;
 	[SerializeField] private Vector3 rotationOffset;
 	[SerializeField] private float sensitivity;
 	[SerializeField] private float distance;
+
+	[Header("Camera alignment angles")]
 	[SerializeField] private float minVerticalAngle;
 	[SerializeField] private float maxVerticalAngle;
 	[SerializeField] private float minHorizontalAngle;
@@ -41,7 +45,6 @@ public class PlayerCamera : MonoBehaviour
 		transform.rotation = rotation;
 		transform.position = position;
 
-		//Calculation player rotaion and rotate player
 		Quaternion playerRotation = Quaternion.Euler(0f, _rotation.x, 0f);
 		playerTransform.rotation = playerRotation;
 	}

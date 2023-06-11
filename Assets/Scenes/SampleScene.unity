@@ -471,6 +471,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1158460861295333704, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
+      propertyPath: maxVerticalAngle
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158460861295333704, guid: d3c9c6d7b3597e44ebbaf72ef3bdd335, type: 3}
       propertyPath: maxHorizontalAngle
       value: 75
       objectReference: {fileID: 0}
